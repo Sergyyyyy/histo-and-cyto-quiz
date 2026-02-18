@@ -166,7 +166,7 @@ async function runCytologyQuiz() {
         "house DNA and direct protein synthesis", // 6
         "selective barrier", // 7
         "electron microscope", // 8
-        "strengthen cell and tissue structureP", // 9
+        "strengthen cell and tissue structure", // 9
         "plasma membrane", // 10
         "cytosol", // 11
         "non-membrane-bound", // 12
