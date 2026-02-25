@@ -8,21 +8,21 @@ document.getElementById("btn-startQuiz").onclick = function () {
         title: "<h4 style='color: black;'>Choose Your Quiz:</h4>",
         titleColor: 'white',
         showDenyButton: true,
-        confirmButtonText: "ANACHEM",
-        denyButtonText: `Back`,
+        confirmButtonText: "HISTOLOGY",
+        denyButtonText: "CYTOLOGY",
         confirmButtonColor: 'rgb(3, 37, 85)',
+        denyButtonColor: 'rgb(3, 37, 85)',
     }).then((result) => {
         if (result.isConfirmed) {
-            runAnachemQuiz()
+            runHistologyQuiz()
         } else if (result.isDenied) {
-            Swal.fire('Hehe u givin up? 🤣🤣')
+            runCytologyQuiz()
         }
     });
 }
 
 
 // HISTO LAB DEMO FUNCTIONS
-
 async function runHistologyQuiz() {
 
     const histologyQuestions = [
@@ -91,7 +91,7 @@ async function runHistologyQuiz() {
             input: "text",
             inputPlaceholder: "Type your answer...",
             confirmButtonText: "Submit",
-            allowOutsideClick: false
+            allowOutsideClick: true
         });
 
         if (!userAnswer) {
@@ -123,7 +123,6 @@ async function runHistologyQuiz() {
 }
 
 // CYTOLOGY FUNCTIONS
-
 async function runCytologyQuiz() {
 
     const cytologyQuestions = [
@@ -192,7 +191,7 @@ async function runCytologyQuiz() {
             input: "text",
             inputPlaceholder: "Type your answer...",
             confirmButtonText: "Submit",
-            allowOutsideClick: false
+            allowOutsideClick: true
         });
 
         if (!userAnswer) {
@@ -223,6 +222,7 @@ async function runCytologyQuiz() {
     await Swal.fire(`Quiz Finished! Your score: (${score}/${cytologyQuestions.length}) mwamwamwaa`);
 }
 
+// ANACHEM FUNCTIONS
 async function runAnachemQuiz() {
 
     const anachemQuestions = [
@@ -345,7 +345,6 @@ async function runAnachemQuiz() {
         "Why can calculated answers not be more precise than measured data?",
         "Give an example of sandwich zeros.",
         "Explain trailing zeros rule."
-
     ];
 
     const anachemAnswers = [
