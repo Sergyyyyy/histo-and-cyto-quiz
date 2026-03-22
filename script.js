@@ -62,7 +62,7 @@ async function runPMTPQuiz() {
     ];
 
     const pmtpAnswersArr = [
-        "1. Point-of-care testing performed near the patient",
+        "1. Point-of-care testing",
         "2. Alternate site testing, ancillary, bedside, near-patient",
         "3. Small, portable, handheld devices",
         "4. Convenience and short turnaround time",
