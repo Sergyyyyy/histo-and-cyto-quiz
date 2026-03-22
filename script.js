@@ -102,10 +102,10 @@ async function runPMTPQuiz() {
 
     let score = 0;
 
-    for (let i = 0; i < histologyQuestions.length; i++) {
+    for (let i = 0; i < pmtpQuestionsArr.length; i++) {
 
         const { value: userAnswer } = await Swal.fire({
-            title: histologyQuestions[i],
+            title: pmtpQuestionsArr[i],
             input: "text",
             inputPlaceholder: "Type your answer...",
             confirmButtonText: "Submit",
@@ -119,7 +119,7 @@ async function runPMTPQuiz() {
         }
 
         const formattedUserAnswer = userAnswer.trim().toLowerCase();
-        const correctAnswer = histologyAnswers[i].toLowerCase();
+        const correctAnswer = pmtpAnswersArr[i].toLowerCase();
 
         if (formattedUserAnswer === correctAnswer) {
             score++;
@@ -132,12 +132,12 @@ async function runPMTPQuiz() {
             await Swal.fire({
                 icon: "error",
                 title: "Incorrect!",
-                text: `Correct answer: ${histologyAnswers[i]}`
+                text: `Correct answer: ${pmtpAnswersArr[i]}`
             });
         }
     }
 
-    await Swal.fire(`Quiz Finished! Your score: (${score}/${histologyQuestions.length}) I love youuuu`);
+    await Swal.fire(`Quiz Finished! Your score: (${score}/${pmtpAnswersArr.length}) I love youuuu`);
 }
 
 
