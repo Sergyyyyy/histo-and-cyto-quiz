@@ -8,17 +8,136 @@ document.getElementById("btn-startQuiz").onclick = function () {
         title: "<h4 style='color: black;'>Choose Your Quiz:</h4>",
         titleColor: 'white',
         showDenyButton: true,
-        confirmButtonText: "HISTOLOGY",
-        denyButtonText: "CYTOLOGY",
+        confirmButtonText: "PMTP",
+        denyButtonText: "BACK",
         confirmButtonColor: 'rgb(3, 37, 85)',
-        denyButtonColor: 'rgb(3, 37, 85)',
+        denyButtonColor: 'rgb(177, 9, 9)',
     }).then((result) => {
         if (result.isConfirmed) {
-            runHistologyQuiz()
+            runPMTPQuiz()
         } else if (result.isDenied) {
-            runCytologyQuiz()
+            
         }
     });
+}
+
+async function runPMTPQuiz() {
+
+    const pmtpQuestionsArr = [
+        "1. What is POCT?",
+        "2. What are other names for POCT?",
+        "3. What type of instruments are used in POCT?",
+        "4. What are the advantages of POCT?",
+        "5. What is a common example of a POCT test?",
+        "6. What are the disadvantages of POCT?",
+        "7. What does CLIA call POCT tests?",
+        "8. What does CLIA define waived tests as?",
+        "9. What does BNP test indicate?",
+        "10. What do Troponin T and I indicate?",
+        "11. What method does a glucometer use?",
+        "12. What enzyme is used in glucometer strips?",
+        "13. What method does a hemoglobinometer use?",
+        "14. What is the purpose of a hemoglobinometer?",
+        "15. What are strip tests used for?",
+        "16. What is a positive result in strip tests called?",
+        "17. What are slide tests used for?",
+        "18. What sample is used in blood glucose testing?",
+        "19. What should be avoided during blood collection?",
+        "20. What are panic values?",
+        "21. Who receives panic values?",
+        "22. What is Ivy’s method used for?",
+        "23. What device is used in Ivy’s method?",
+        "24. Where is the puncture site in Ivy’s method?",
+        "25. What pressure is applied in Ivy’s method?",
+        "26. What is the normal bleeding time in Ivy’s method?",
+        "27. What is a common mistake in Ivy’s method?",
+        "28. What is Duke’s method?",
+        "29. Where is Duke’s method performed?",
+        "30. What is the normal range for Duke’s method?",
+        "31. What is the tube method also called?",
+        "32. What is the normal clotting time for tube method?",
+        "33. What is the slide method used for?",
+        "34. What is the normal value for slide method?",
+        "35. Why is capillary tube method not preferred?"
+    ];
+
+    const pmtpAnswersArr = [
+        "1. Point-of-care testing performed near the patient",
+        "2. Alternate site testing, ancillary, bedside, near-patient",
+        "3. Small, portable, handheld devices",
+        "4. Convenience and short turnaround time",
+        "5. Pregnancy test",
+        "6. Limited accuracy, precision, and consistency",
+        "7. Waived tests",
+        "8. Tests cleared by FDA for home use",
+        "9. Heart failure",
+        "10. Heart failure, stroke, or cardiovascular disease",
+        "11. Electrochemical method",
+        "12. Glucose oxidase or dehydrogenase",
+        "13. Reflectance photometry",
+        "14. To measure hemoglobin levels",
+        "15. Pregnancy, infectious diseases, HIV, hepatitis",
+        "16. Reactive result",
+        "17. Clotting time tests",
+        "18. Capillary blood",
+        "19. Overmassaging and touching the strip",
+        "20. Values outside normal range",
+        "21. Nurse or physician in charge",
+        "22. Measuring bleeding time",
+        "23. Sphygmomanometer",
+        "24. Volar surface of forearm",
+        "25. 40 mmHg",
+        "26. 2–8 minutes",
+        "27. Using lancet instead of bleeding device",
+        "28. Bleeding time via finger puncture",
+        "29. Finger (daliri)",
+        "30. 2–5 minutes",
+        "31. Lee and White method",
+        "32. 7–15 minutes",
+        "33. Clotting time determination using glass slide",
+        "34. 2–4 minutes",
+        "35. Messy and risk of breaking tubes"
+    ];
+
+
+    let score = 0;
+
+    for (let i = 0; i < histologyQuestions.length; i++) {
+
+        const { value: userAnswer } = await Swal.fire({
+            title: histologyQuestions[i],
+            input: "text",
+            inputPlaceholder: "Type your answer...",
+            confirmButtonText: "Submit",
+            allowOutsideClick: true
+        });
+
+        if (!userAnswer) {
+            await Swal.fire("Please enter an answer!");
+            i--;
+            continue;
+        }
+
+        const formattedUserAnswer = userAnswer.trim().toLowerCase();
+        const correctAnswer = histologyAnswers[i].toLowerCase();
+
+        if (formattedUserAnswer === correctAnswer) {
+            score++;
+            updateCorrectScore++
+            correntScore.innerHTML = updateCorrectScore
+            await Swal.fire("Correct! 🎉");
+        } else {
+            updateIncorrectScore++
+            incorrectScore.innerHTML = updateIncorrectScore
+            await Swal.fire({
+                icon: "error",
+                title: "Incorrect!",
+                text: `Correct answer: ${histologyAnswers[i]}`
+            });
+        }
+    }
+
+    await Swal.fire(`Quiz Finished! Your score: (${score}/${histologyQuestions.length}) I love youuuu`);
 }
 
 
@@ -466,7 +585,7 @@ async function runAnachemQuiz() {
         "Multiplication/division: round to least significant figures.",
         "Calculated answers cannot exceed precision of measurements.",
         "Sandwich zeros example: 7003 has 4 sig figs.",
-       "Trailing zeros rule: 100.000 has 6 sig figs; 500 has 1 sig fig if no decimal, 500. has 3 sig figs."
+        "Trailing zeros rule: 100.000 has 6 sig figs; 500 has 1 sig fig if no decimal, 500. has 3 sig figs."
     ];
 
 
